@@ -1,0 +1,22 @@
+public static String findDay(int month, int day, int year){
+        //obtaining aninstance of the calendar
+        Calendar c = Calendar.getInstance();
+
+        //declaring the values of the parameteres
+        c.set(Calendar.MONTH,month-1);
+        c.set(Calendar.DAY_OF_WEEK,day-1);
+        c.set(Calendar.YEAR,year);
+
+        //year constraints
+        try{
+            if(!(year<=2000 || year>=300)){
+                throw new Exception("Place an year between 2000 and 3000");
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        
+        //String representation of the calendar field value passed as parameter
+        return c.getDisplayName(c.DAY_OF_WEEK,c.LONG,Locale.getDefault()).toUpperCase();
+    }
+}
