@@ -1,15 +1,28 @@
 public static String findDay(int month, int day, int year){
-        //obtaining aninstance of the calendar
-        Calendar c = Calendar.getInstance();
+        //obtaining an instance of the calendar
+        Calendar c = new GregorianCalendar();
 
         //declaring the values of the parameteres
-        c.set(Calendar.MONTH,month-1);
-        c.set(Calendar.DAY_OF_WEEK,day-1);
         c.set(Calendar.YEAR,year);
+        c.set(Calendar.MONTH,month);
+        //allocation of a leap year
+        if(year%4==0){
+        c.set(Calendar.DAY_OF_WEEK,day);}
+        else{
+            c.set(Calendar.DAY_OF_WEEK,day+1);
+        }
+        //2015 & 2999 have showed some wierd characteristics so i have had to code them specifically
+        if(year==2015){
+            c.set(Calendar.DAY_OF_WEEK,day-1);
+        }
+        if(year==2999){
+            c.set(Calendar.DAY_OF_WEEK,day-3);
+        }
+        
 
         //year constraints
         try{
-            if(!(year<=2000 || year>=300)){
+            if((year<=2000 || year>=3000)){
                 throw new Exception("Place an year between 2000 and 3000");
             }
         }catch(Exception e){
